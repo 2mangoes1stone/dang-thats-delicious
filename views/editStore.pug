@@ -1,0 +1,11 @@
+extends layout
+
+include mixins/_storeForm
+
+block content
+  .inner
+    //- Can only get away without interpolations when only variable needs to be declared
+    h2= title
+    +storeForm()
+  
+
