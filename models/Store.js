@@ -6,7 +6,7 @@ const storeSchema = new mongoose.Schema({
   name: {
     type: String,
     trim: true,
-    required: 'please enter a string name!'
+    required: 'Please enter a store name!'
   },
   slug: String,
   description: {
@@ -16,14 +16,14 @@ const storeSchema = new mongoose.Schema({
   tags: [String]
 });
 
-storeSchema.pre('save', function(nexr) {
+storeSchema.pre('save', function(next) {
   if (!this.isModified('name')) {
     next(); // skip it
     return; // stop this function from running
   }
   this.slug = slug(this.name);
   next();
-  // TODO make more reiliant so slugs are unique
+  // TODO make more resiliant so slugs are unique
 });
 
-module.exports = mongoose.model('Store', storeSchema)
+module.exports = mongoose.model('Store', storeSchema);
